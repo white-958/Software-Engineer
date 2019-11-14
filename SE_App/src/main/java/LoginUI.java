@@ -814,11 +814,17 @@ public class LoginUI extends javax.swing.JFrame {
     }//GEN-LAST:event_PasswordActionPerformed
 
     private void PasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PasswordFocusLost
+         // Kwstas (Login Form)
+        
+        
         if(Username.getText().equals("")){
             Username.setText("*********");
     }//GEN-LAST:event_PasswordFocusLost
 
     private void PasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PasswordFocusGained
+         // Kwstas (Login Form)
+         
+         
         Password.setText("");
     }//GEN-LAST:event_PasswordFocusGained
 
