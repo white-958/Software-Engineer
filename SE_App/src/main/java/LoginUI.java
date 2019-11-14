@@ -328,9 +328,7 @@ public class LoginUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        ChangePassword.setMaximumSize(new java.awt.Dimension(650, 360));
         ChangePassword.setMinimumSize(new java.awt.Dimension(650, 360));
-        ChangePassword.setPreferredSize(new java.awt.Dimension(650, 360));
 
         jLabel14.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -569,7 +567,7 @@ public class LoginUI extends javax.swing.JFrame {
 
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
-        
+// Kwstas - evala to eroor mesage giati den douleye        
         try {
             
             sc = new Scanner(file);
@@ -586,6 +584,10 @@ public class LoginUI extends javax.swing.JFrame {
                     Name.setText(obj.getName());
                     Surname.setText(obj.getSurname());
                     Eksamino.setText(String.valueOf(obj.getExam()));
+                }
+                else{
+                    errormsg1.setText("Error passowrd or username");
+
                 }
             } 
         } catch (FileNotFoundException ex) {
@@ -851,8 +853,8 @@ for (int i=0;i<students.length;i++) {
     }
 //Maria Karaxatzi
     Account obj;
-    String tempfilename="C:\\Users\\Theopas\\Desktop\\mavenproject1\\src\\main\\java\\temp.txt";
-    String filename="C:\\Users\\Theopas\\Desktop\\mavenproject1\\src\\main\\java\\text.txt";
+    String tempfilename="C:\\Users\\Konstantinos\\Documents\\NetBeansProjects\\Software-Engineer\\SE_App\\src\\main\\java\\temp.txt";
+    String filename="C:\\Users\\Konstantinos\\Documents\\NetBeansProjects\\Software-Engineer\\SE_App\\src\\main\\java\\text.txt";
     File file =  new File(filename);
     File tempfile;
     Scanner sc; 
