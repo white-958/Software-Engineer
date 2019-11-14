@@ -25,6 +25,10 @@ public class LoginUI extends javax.swing.JFrame {
         students[1]=new Account(17053, "Maria", "Papa", 'B', "it739", "123");
         students[2]=new Account(17042, "Anna", "Ioannou", 'C', "it589", "123");
         students[3]=new Account(17021, "Petros", "Afroy", 'E', "it749", "123");*/
+        
+        
+        Login.setFocusable(true);
+        
     }
 
     /**
@@ -81,11 +85,11 @@ public class LoginUI extends javax.swing.JFrame {
         Login = new javax.swing.JPanel();
         Password = new javax.swing.JPasswordField();
         Username = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         LoginButton = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
         errormsg1 = new javax.swing.JLabel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
 
         StudentHomeUI.setMinimumSize(new java.awt.Dimension(710, 460));
 
@@ -464,8 +468,19 @@ public class LoginUI extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(285, 340));
         setResizable(false);
 
-        Login.setBackground(new java.awt.Color(255, 255, 255));
+        Login.setBackground(new java.awt.Color(102, 102, 102));
+        Login.setForeground(new java.awt.Color(102, 102, 102));
+        Login.setNextFocusableComponent(LoginButton);
 
+        Password.setText("Password:");
+        Password.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                PasswordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                PasswordFocusLost(evt);
+            }
+        });
         Password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PasswordActionPerformed(evt);
@@ -477,15 +492,26 @@ public class LoginUI extends javax.swing.JFrame {
             }
         });
 
+        Username.setText("Enter your Username");
+        Username.setToolTipText("Enter your Username");
+        Username.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                UsernameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                UsernameFocusLost(evt);
+            }
+        });
+        Username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UsernameActionPerformed(evt);
+            }
+        });
         Username.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 UsernameKeyPressed(evt);
             }
         });
-
-        jLabel1.setText("UserName:");
-
-        jLabel2.setText("Password:");
 
         LoginButton.setText("Login");
         LoginButton.addActionListener(new java.awt.event.ActionListener() {
@@ -508,133 +534,61 @@ public class LoginUI extends javax.swing.JFrame {
         Login.setLayout(LoginLayout);
         LoginLayout.setHorizontalGroup(
             LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LoginLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(errormsg1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginLayout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+                .addGap(0, 75, Short.MAX_VALUE)
                 .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginLayout.createSequentialGroup()
+                    .addGroup(LoginLayout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(LoginLayout.createSequentialGroup()
                         .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(LoginLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(34, 34, 34)
-                                .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(LoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(LoginLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(74, 74, 74))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginLayout.createSequentialGroup()
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60))))
+                            .addComponent(errormsg1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(61, 61, 61)
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(LoginLayout.createSequentialGroup()
+                .addGap(84, 84, 84)
+                .addComponent(LoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         LoginLayout.setVerticalGroup(
             LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(errormsg1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(errormsg1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(29, 29, 29)
+                .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addComponent(LoginButton)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(Login, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(Login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
-    private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
-// Kwstas - evala to eroor mesage giati den douleye        
-        try {
-            
-            sc = new Scanner(file);
-            while (sc.hasNextLine()){ 
-                String[] str=sc.nextLine().split("@");
-                
-                if (str[4].equals(Username.getText()) && (str[5].equals(Password.getText()))) {
-                    obj=new Account(Integer.parseInt(str[0]),str[1],str[2],str[3].charAt(0),str[4],str[5]);
-
-                    StudentHomeUI.setVisible(true);
-                    this.setVisible(false);
-                    //Aggelis Zotis  Pernaei sta label stoixia fitit
-                    Username1.setText(obj.getUsername());
-                    Name.setText(obj.getName());
-                    Surname.setText(obj.getSurname());
-                    Eksamino.setText(String.valueOf(obj.getExam()));
-                }
-                else{
-                    errormsg1.setText("Error passowrd or username");
-
-                }
-            } 
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(LoginUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-          
-       
-            /*
-//Maria Karaxatzi
-for (int i=0;i<students.length;i++) {
-    if (students[i].getUsername().equals(Username.getText()) && (students[i].getPassword().equals(Password.getText()))) {
-        
-        StudentHomeUI.setVisible(true);
-        this.setVisible(false);
-        
-        //Aggelis Zotis  Pernaei sta label stoixia fitit
-        Username1.setText(students[i].getUsername());
-        Name.setText(students[i].getName());
-        Surname.setText(students[i].getSurname());
-        Eksamino.setText(String.valueOf(students[i].getExam()));
-        index=i;
-        
-    } else {
-        errormsg1.setText("Error passowrd or username");
-    }
-    /*else if ("admin".equals(Username.getText()) && "admin".equals(Password.getText())) {
-    new GramatiaHomeUI().setVisible(true);
-    this.setVisible(false);
-    }*//*
-}
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(LoginUI.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                br.close();
-            } catch (IOException ex) {
-                Logger.getLogger(LoginUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }*/
-//Maria Karaxatzi
-
-    }//GEN-LAST:event_LoginButtonActionPerformed
-
-    private void PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PasswordActionPerformed
 
     private void StoixiafoititiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StoixiafoititiActionPerformed
         // TODO add your handling code here:
@@ -662,26 +616,6 @@ for (int i=0;i<students.length;i++) {
         StudentHomeUI.setVisible(true);
         StoixiaFoititi.setVisible(false);
     }//GEN-LAST:event_EpistrofiStoixiaFoititiActionPerformed
-
-    private void LoginButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LoginButtonKeyPressed
-        // TODO add your handling code here:
-        //login(evt);
-
-    }//GEN-LAST:event_LoginButtonKeyPressed
-
-    private void UsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UsernameKeyPressed
-        // TODO add your handling code here:
-
-        //login(evt);
-
-    }//GEN-LAST:event_UsernameKeyPressed
-
-    private void PasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PasswordKeyPressed
-        // TODO add your handling code here:
-
-        //login(evt);
-
-    }//GEN-LAST:event_PasswordKeyPressed
 
     private void BackToStudentHomeFromAllagiKodikouActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToStudentHomeFromAllagiKodikouActionPerformed
         // TODO add your handling code here:
@@ -778,7 +712,117 @@ for (int i=0;i<students.length;i++) {
         }
     }//GEN-LAST:event_ChangePasswordSaveActionPerformed
 
-    
+    private void LoginButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LoginButtonKeyPressed
+        // TODO add your handling code here:
+        //login(evt);
+    }//GEN-LAST:event_LoginButtonKeyPressed
+
+    private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
+        // Kwstas - evala to eroor mesage giati den douleye
+        try {
+
+            sc = new Scanner(file);
+            while (sc.hasNextLine()){
+                String[] str=sc.nextLine().split("@");
+
+                if (str[4].equals(Username.getText()) && (str[5].equals(Password.getText()))) {
+                    obj=new Account(Integer.parseInt(str[0]),str[1],str[2],str[3].charAt(0),str[4],str[5]);
+
+                    StudentHomeUI.setVisible(true);
+                    this.setVisible(false);
+                    //Aggelis Zotis  Pernaei sta label stoixia fitit
+                    Username1.setText(obj.getUsername());
+                    Name.setText(obj.getName());
+                    Surname.setText(obj.getSurname());
+                    Eksamino.setText(String.valueOf(obj.getExam()));
+                }
+                else{
+                    errormsg1.setText("Error passowrd or username");
+
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(LoginUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        /*
+        //Maria Karaxatzi
+        for (int i=0;i<students.length;i++) {
+            if (students[i].getUsername().equals(Username.getText()) && (students[i].getPassword().equals(Password.getText()))) {
+
+                StudentHomeUI.setVisible(true);
+                this.setVisible(false);
+
+                //Aggelis Zotis  Pernaei sta label stoixia fitit
+                Username1.setText(students[i].getUsername());
+                Name.setText(students[i].getName());
+                Surname.setText(students[i].getSurname());
+                Eksamino.setText(String.valueOf(students[i].getExam()));
+                index=i;
+
+            } else {
+                errormsg1.setText("Error passowrd or username");
+            }
+            /*else if ("admin".equals(Username.getText()) && "admin".equals(Password.getText())) {
+                new GramatiaHomeUI().setVisible(true);
+                this.setVisible(false);
+            }*//*
+        }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(LoginUI.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                br.close();
+            } catch (IOException ex) {
+                Logger.getLogger(LoginUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }*/
+        //Maria Karaxatzi
+    }//GEN-LAST:event_LoginButtonActionPerformed
+
+    private void UsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UsernameKeyPressed
+        // TODO add your handling code here:
+
+        //login(evt);
+    }//GEN-LAST:event_UsernameKeyPressed
+
+    private void UsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UsernameActionPerformed
+
+    private void UsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UsernameFocusLost
+        if(Username.getText().equals("")){
+            Username.setText("Enter your Username");
+    }//GEN-LAST:event_UsernameFocusLost
+
+    private void UsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UsernameFocusGained
+        // Kwstas (Login Form)
+
+        if(Username.getText().equals("Enter your Username")){
+            Username.setText("");
+        }
+    }//GEN-LAST:event_UsernameFocusGained
+
+    private void PasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PasswordKeyPressed
+        // TODO add your handling code here:
+
+        //login(evt);
+    }//GEN-LAST:event_PasswordKeyPressed
+
+    private void PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PasswordActionPerformed
+
+    private void PasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PasswordFocusLost
+        if(Username.getText().equals("")){
+            Username.setText("*********");
+    }//GEN-LAST:event_PasswordFocusLost
+
+    private void PasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PasswordFocusGained
+        Password.setText("");
+    }//GEN-LAST:event_PasswordFocusGained
+
+ 
 
    
 /*
@@ -884,12 +928,13 @@ for (int i=0;i<students.length;i++) {
     private javax.swing.JTextField Username;
     private javax.swing.JLabel Username1;
     private javax.swing.JLabel errormsg1;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler2;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton8;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -899,7 +944,6 @@ for (int i=0;i<students.length;i++) {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
